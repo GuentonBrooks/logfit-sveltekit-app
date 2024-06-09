@@ -11,7 +11,7 @@
 </script>
 
 <div class="input-group input-group-divider border-none grid-cols-[auto_1fr_auto]">
-	<div class="input-group-shim text-primary-500"><IconLock /></div>
+	<div class="input-group-shim"><IconLock /></div>
 	<input
 		class="input border-none rounded-none"
 		type="password"

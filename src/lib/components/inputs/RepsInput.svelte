@@ -2,7 +2,7 @@
 	import IconCounter from '~icons/mdi/counter';
 	import { createEventDispatcher } from 'svelte';
 
-	export let value: string;
+	export let value: number;
 	export let ref: HTMLInputElement | null = null;
 
 	const dispatch = createEventDispatcher();

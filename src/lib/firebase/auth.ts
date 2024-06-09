@@ -186,3 +186,6 @@ export const setFirebaseAdminState = (user: FirebaseDatabaseUserFormat) => {
 	firstNameState.set(user.firstName);
 	lastNameState.set(user.lastName);
 };
+
+/** Get a Reference to the user db by the given uid */
+export const getUserRef = (uid: string) => child(ref(db), `users/${uid}`);

@@ -21,7 +21,7 @@
 		<slot />
 	</div>
 
-	<div class="flex w-full max-w-lg place-self-center">
+	<div class="flex w-full max-w-lg place-self-center m-3">
 		<FlatAlert />
 	</div>
 

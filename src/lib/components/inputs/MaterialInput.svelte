@@ -15,7 +15,7 @@
 </script>
 
 <div class="input-group input-group-divider border-none grid-cols-[auto_1fr_auto]">
-	<div class="input-group-shim text-primary-500">
+	<div class="input-group-shim">
 		<slot><IconPencil /></slot>
 	</div>
 	<input

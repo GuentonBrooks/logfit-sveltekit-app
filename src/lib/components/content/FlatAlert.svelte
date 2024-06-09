@@ -19,7 +19,7 @@
 {#if $alertTypeState === 'info' && $alertTextState}
 	<button
 		type="button"
-		class="alert variant-soft shadow-xl w-full"
+		class="flex items-center gap-2 p-4 rounded variant-soft shadow-xl w-full"
 		in:scale={{ duration: 500, opacity: 0.5, start: 0.5 }}
 		on:click={dismissAlert}
 	>
@@ -27,18 +27,16 @@
 			<IconInformation />
 		</div>
 
-		<div class="alert-message">{$alertTextState}</div>
+		<div class="flex-1">{$alertTextState}</div>
 
-		<div class="alert-actions">
-			<button type="button" class="btn" on:click={dismissAlert}>
-				<IconClose />
-			</button>
-		</div>
+		<button type="button" class="btn btn-sm" on:click={dismissAlert}>
+			<IconClose />
+		</button>
 	</button>
 {:else if $alertTypeState === 'success' && $alertTextState}
 	<button
 		type="button"
-		class="alert variant-soft-success shadow-xl w-full"
+		class="flex items-center fap-2 p-4 rounded variant-soft-success shadow-xl w-full"
 		in:scale={{ duration: 500, opacity: 0.5, start: 0.5 }}
 		on:click={dismissAlert}
 	>
@@ -46,18 +44,16 @@
 			<IconPlay />
 		</div>
 
-		<div class="alert-message">{$alertTextState}</div>
+		<div class="flex-1">{$alertTextState}</div>
 
-		<div class="alert-actions">
-			<button type="button" class="btn" on:click={dismissAlert}>
-				<IconClose />
-			</button>
-		</div>
+		<button type="button" class="btn btn-sm" on:click={dismissAlert}>
+			<IconClose />
+		</button>
 	</button>
 {:else if $alertTypeState === 'warning' && $alertTextState}
 	<button
 		type="button"
-		class="alert variant-soft-warning shadow-xl w-full"
+		class="flex items-center fap-2 p-4 rounded variant-soft-warning shadow-xl w-full"
 		in:scale={{ duration: 500, opacity: 0.5, start: 0.5 }}
 		on:click={dismissAlert}
 	>
@@ -65,18 +61,16 @@
 			<IconPause />
 		</div>
 
-		<div class="alert-message">{$alertTextState}</div>
+		<div class="flex-1">{$alertTextState}</div>
 
-		<div class="alert-actions">
-			<button type="button" class="btn" on:click={dismissAlert}>
-				<IconClose />
-			</button>
-		</div>
+		<button type="button" class="btn btn-sm" on:click={dismissAlert}>
+			<IconClose />
+		</button>
 	</button>
 {:else if $alertTypeState === 'error' && $alertTextState}
 	<button
 		type="button"
-		class="alert variant-soft-error shadow-xl w-full"
+		class="flex items-center fap-2 p-4 rounded variant-soft-error shadow-xl w-full"
 		in:scale={{ duration: 500, opacity: 0.5, start: 0.5 }}
 		on:click={dismissAlert}
 	>
@@ -84,18 +78,16 @@
 			<IconStop />
 		</div>
 
-		<div class="alert-message">{$alertTextState}</div>
+		<div class="flex-1">{$alertTextState}</div>
 
-		<div class="alert-actions">
-			<button type="button" class="btn" on:click={dismissAlert}>
-				<IconClose />
-			</button>
-		</div>
+		<button type="button" class="btn btn-sm" on:click={dismissAlert}>
+			<IconClose />
+		</button>
 	</button>
 {:else if $alertTextState}
 	<button
 		type="button"
-		class="alert variant-soft shadow-xl w-full"
+		class="flex items-center fap-2 p-4 rounded variant-soft shadow-xl w-full"
 		in:scale={{ duration: 500, opacity: 0.5, start: 0.5 }}
 		on:click={dismissAlert}
 	>
@@ -103,12 +95,10 @@
 			<IconChatQuestion />
 		</div>
 
-		<div class="alert-message">{$alertTextState}</div>
+		<div class="flex-1">{$alertTextState}</div>
 
-		<div class="alert-actions">
-			<button type="button" class="btn" on:click={dismissAlert}>
-				<IconClose />
-			</button>
-		</div>
+		<button type="button" class="btn btn-sm" on:click={dismissAlert}>
+			<IconClose />
+		</button>
 	</button>
 {/if}

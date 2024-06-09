@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { authLoginPage, statsPage } from '$utils/pages';
+	import { authLoginPage, homePage, statsPage } from '$utils/pages';
 	import { getFirebaseUserId, getUserRef } from '$lib/firebase/auth';
 
 	import IconComment from '~icons/mdi/comment-processing';
@@ -18,10 +18,12 @@
 	import MaterialInput from '$lib/components/inputs/MaterialInput.svelte';
 	import type { Unsubscriber } from 'svelte/store';
 	import { onValue } from 'firebase/database';
-	import type { FirebaseDatabaseUserFormat } from '$lib/types/auth';
 	import type { FirebaseWorkoutLogFormat } from '$lib/types/log';
 	import isValidFirebaseWorkoutLogFormat from '$lib/validation/isValidFirebaseWorkoutLogFormat';
-	import { storeNewFirebaseWorkoutLogAsync } from '$lib/firebase/log';
+	import { getWorkoutLogRef, updateFirebaseWorkoutLogAsync } from '$lib/firebase/log';
+	import { page } from '$app/stores';
+
+	const key = $page.params.key;
 
 	let date: string = '';
 	let duration: number;
@@ -36,8 +38,8 @@
 	let unsubUserInformation: Unsubscriber;
 
 	const store = () => {
-		uid = getFirebaseUserId();
-		if (!uid) goto(authLoginPage);
+		const userId = getFirebaseUserId();
+		if (!userId) goto(authLoginPage);
 
 		const logFormat: FirebaseWorkoutLogFormat = {
 			uid,
@@ -51,31 +53,35 @@
 		};
 		if (!isValidFirebaseWorkoutLogFormat(logFormat)) return;
 
-		storeNewFirebaseWorkoutLogAsync(logFormat)
-			.then(() => goto(statsPage))
+		updateFirebaseWorkoutLogAsync(key, logFormat)
+			.then(() => goto(homePage))
 			.catch(() => null);
 	};
 
 	onMount(() => {
-		uid = getFirebaseUserId();
-		if (!uid) goto(authLoginPage);
+		if (!key) console.log('Invalid key');
 
-		unsubUserInformation = onValue(getUserRef(uid), (snapshot) => {
+		unsubUserInformation = onValue(getWorkoutLogRef(key), (snapshot) => {
 			if (!snapshot.exists()) return;
 
-			const data = snapshot.val() as FirebaseDatabaseUserFormat;
+			const data = snapshot.val() as FirebaseWorkoutLogFormat;
+			uid = data.uid;
 			firstName = data.firstName;
 			lastName = data.lastName;
 			email = data.email;
+			date = data.date;
+			duration = data.duration;
+			reps = data.reps;
+			remarks = data.remarks;
 		});
 	});
 
 	onDestroy(() => unsubUserInformation());
 </script>
 
-<PageHeader label="Logs" subLabel="Enter a new workout log" />
+<PageHeader label="Logs" subLabel="Edit Workout with Log Id: {key}" />
 <SurfaceContainer>
-	<SurfaceHeader label="New Entry" />
+	<SurfaceHeader label="Entry Information" />
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 m-4">
 		<DateInput bind:value={date} />
 		<TimeInput bind:value={duration} />

@@ -8,11 +8,7 @@
 	const click = () => dispatch('click');
 </script>
 
-<button
-	class="btn px-6 variant-filled-error dark:variant-filled-secondary w-full max-w-md"
-	{disabled}
-	on:click={click}
->
+<button class="btn px-6 variant-filled-warning w-full max-w-md" {disabled} on:click={click}>
 	<span>Reset</span>
 	<IconAccountPlus />
 </button>

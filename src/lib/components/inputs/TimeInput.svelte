@@ -2,7 +2,7 @@
 	import IconTimer from '~icons/mdi/timer';
 	import { createEventDispatcher } from 'svelte';
 
-	export let value: string;
+	export let value: number;
 	export let ref: HTMLInputElement | null = null;
 
 	const dispatch = createEventDispatcher();
@@ -13,10 +13,10 @@
 	<div class="input-group-shim"><IconTimer /></div>
 	<input
 		class="input border-none rounded-none"
-		type="time"
+		type="number"
 		name="duration"
 		autocomplete="off"
-		placeholder="Workout Duration"
+		placeholder="Workout Duration (minutes)"
 		bind:value
 		on:keyup={(event) => event.key === 'Enter' && enter()}
 		bind:this={ref}
