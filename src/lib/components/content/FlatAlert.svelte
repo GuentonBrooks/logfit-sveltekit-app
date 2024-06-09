@@ -17,9 +17,11 @@
 </script>
 
 {#if $alertTypeState === 'info' && $alertTextState}
-	<aside
+	<button
+		type="button"
 		class="alert variant-soft shadow-xl w-full"
 		in:scale={{ duration: 500, opacity: 0.5, start: 0.5 }}
+		on:click={dismissAlert}
 	>
 		<div class="btn-icon variant-soft-primary">
 			<IconInformation />
@@ -32,11 +34,13 @@
 				<IconClose />
 			</button>
 		</div>
-	</aside>
+	</button>
 {:else if $alertTypeState === 'success' && $alertTextState}
-	<aside
+	<button
+		type="button"
 		class="alert variant-soft-success shadow-xl w-full"
 		in:scale={{ duration: 500, opacity: 0.5, start: 0.5 }}
+		on:click={dismissAlert}
 	>
 		<div class="btn-icon variant-soft-success">
 			<IconPlay />
@@ -49,11 +53,13 @@
 				<IconClose />
 			</button>
 		</div>
-	</aside>
+	</button>
 {:else if $alertTypeState === 'warning' && $alertTextState}
-	<aside
+	<button
+		type="button"
 		class="alert variant-soft-warning shadow-xl w-full"
 		in:scale={{ duration: 500, opacity: 0.5, start: 0.5 }}
+		on:click={dismissAlert}
 	>
 		<div class="btn-icon variant-soft-warning">
 			<IconPause />
@@ -66,11 +72,13 @@
 				<IconClose />
 			</button>
 		</div>
-	</aside>
+	</button>
 {:else if $alertTypeState === 'error' && $alertTextState}
-	<aside
+	<button
+		type="button"
 		class="alert variant-soft-error shadow-xl w-full"
 		in:scale={{ duration: 500, opacity: 0.5, start: 0.5 }}
+		on:click={dismissAlert}
 	>
 		<div class="btn-icon variant-soft-error">
 			<IconStop />
@@ -83,11 +91,13 @@
 				<IconClose />
 			</button>
 		</div>
-	</aside>
+	</button>
 {:else if $alertTextState}
-	<aside
+	<button
+		type="button"
 		class="alert variant-soft shadow-xl w-full"
 		in:scale={{ duration: 500, opacity: 0.5, start: 0.5 }}
+		on:click={dismissAlert}
 	>
 		<div class="btn-icon">
 			<IconChatQuestion />
@@ -100,5 +110,5 @@
 				<IconClose />
 			</button>
 		</div>
-	</aside>
+	</button>
 {/if}

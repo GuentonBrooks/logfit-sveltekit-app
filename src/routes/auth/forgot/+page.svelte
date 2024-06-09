@@ -18,7 +18,7 @@
 
 	onMount(() => {
 		emailRef.focus();
-		alertTypeState.set('warning');
+		alertTypeState.set('info');
 		alertTextState.set('Be aware! Reset Emails will often go to your spam folder!');
 	});
 

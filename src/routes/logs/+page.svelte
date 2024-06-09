@@ -26,7 +26,7 @@
 <PageHeader label="Logs" subLabel="Enter a new workout log" />
 <SurfaceContainer>
 	<SurfaceHeader label="New Entry" />
-	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-2 mt-4">
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 m-4">
 		<DateInput value={date} />
 		<TimeInput value={duration} />
 		<RepsInput value={reps} />

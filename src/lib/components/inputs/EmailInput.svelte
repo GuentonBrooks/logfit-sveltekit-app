@@ -9,10 +9,10 @@
 	const enter = () => dispatch('enter');
 </script>
 
-<div class="input-group input-group-divider border-none grid-cols-[auto_1fr_auto] max-w-md">
+<div class="input-group input-group-divider border-none grid-cols-[auto_1fr_auto]">
 	<div class="input-group-shim text-primary-500"><IconAt /></div>
 	<input
-		class="input border-none rounded-none py-3"
+		class="input border-none rounded-none"
 		type="email"
 		name="email"
 		autocomplete="email"

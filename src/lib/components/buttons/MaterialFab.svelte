@@ -1,6 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	import IconRestart from '~icons/mdi/restart';
+	import IconGestureTap from '~icons/mdi/gesture-tap';
 
 	export let disabled = false;
 
@@ -8,7 +8,6 @@
 	const click = () => dispatch('click');
 </script>
 
-<button class="btn px-6 variant-soft-tertiary w-full max-w-md" {disabled} on:click={click}>
-	<IconRestart />
-	<span>Restart</span>
+<button class="btn btn-icon bg-transparent text-primary-500" {disabled} on:click={click}>
+	<slot><IconGestureTap /></slot>
 </button>

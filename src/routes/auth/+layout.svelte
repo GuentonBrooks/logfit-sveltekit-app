@@ -1,20 +1,44 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { auth, setFirebaseUserState } from '$lib/firebase/auth';
-	import { authLoginPage, homePage } from '$utils/pages';
+	import { auth, fetchFirebaseUserInfo, setFirebaseUserToState } from '$lib/firebase/auth';
+	import { isDarkModeState } from '$lib/store';
+	import { authUserPage, homePage } from '$utils/pages';
 	import { onAuthStateChanged } from 'firebase/auth';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
+	import type { Unsubscriber } from 'svelte/store';
 
-	onMount(() =>
-		onAuthStateChanged(auth, (user) => {
+	let unsubAuth: Unsubscriber;
+	let unsubDarkMode: Unsubscriber;
+
+	onMount(() => {
+		unsubAuth = onAuthStateChanged(auth, (user) => {
 			if (user) {
-				setFirebaseUserState();
-				goto(homePage);
-			} else {
-				goto(authLoginPage);
+				fetchFirebaseUserInfo()
+					.then((firebaseUser) => {
+						if (!firebaseUser) return goto(authUserPage);
+
+						setFirebaseUserToState(firebaseUser);
+						goto(homePage);
+					})
+					.catch(() => console.log('error fetching firebase user'));
 			}
-		}),
-	);
+		});
+	});
+
+	onMount(() => {
+		unsubDarkMode = isDarkModeState.subscribe((isDarkMode) => {
+			if (isDarkMode) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+		});
+	});
+
+	onDestroy(() => {
+		unsubAuth();
+		unsubDarkMode();
+	});
 </script>
 
 <slot />

@@ -1,6 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	import IconLogout from '~icons/mdi/logout-variant';
+	import IconDelete from '~icons/mdi/delete-alert';
 
 	export let disabled = false;
 
@@ -8,6 +8,7 @@
 	const click = () => dispatch('click');
 </script>
 
-<button class="btn btn-icon bg-transparent text-primary-500" {disabled} on:click={click}>
-	<IconLogout />
+<button class="btn px-6 variant-filled-warning w-full max-w-md" {disabled} on:click={click}>
+	<span>Delete</span>
+	<IconDelete />
 </button>

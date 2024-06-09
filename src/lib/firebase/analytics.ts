@@ -58,3 +58,14 @@ export const analyticResetRequest = (email: string) => {
 
 	analyticsState.update((events) => [...events, newEvent]);
 };
+
+export const analyticsUpdateUserEvent = (uid: string) => {
+	const newEvent: GoogleAnalyticsEvent = {
+		id: 'profile-update',
+		data: { uid },
+		event: 'profile_update',
+		type: 'event',
+	};
+
+	analyticsState.update((events) => [...events, newEvent]);
+};

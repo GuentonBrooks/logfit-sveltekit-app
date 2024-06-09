@@ -4,6 +4,7 @@ export const policyPage = '/policy';
 export const authLoginPage = '/auth/login';
 export const authForgotPage = '/auth/forgot';
 export const authSignupPage = '/auth/signup';
+export const authUserPage = '/auth/user';
 
 // HOME
 export const homePage = '/home';
@@ -13,6 +14,9 @@ export const logsPage = '/logs';
 
 // STATS
 export const statsPage = '/stats';
+
+// USER
+export const userPage = '/user';
 
 // ERROR
 export const errorPage = '/error';

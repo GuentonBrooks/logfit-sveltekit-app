@@ -17,11 +17,11 @@
 		<SubHeader {label} />
 	</div>
 
-	<div class="flex-1 flex flex-col gap-8 items-center">
+	<div class="flex-1 flex flex-col gap-8 w-full max-w-md place-self-center">
 		<slot />
 	</div>
 
-	<div class="flex self-center max-w-lg">
+	<div class="flex w-full max-w-lg place-self-center">
 		<FlatAlert />
 	</div>
 

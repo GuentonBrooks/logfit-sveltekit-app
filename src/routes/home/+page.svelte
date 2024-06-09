@@ -1,15 +1,29 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { authLoginPage } from '$utils/pages';
-	import { getFirebaseUserId } from '$lib/firebase/auth';
+	import { authLoginPage, authUserPage, userPage } from '$utils/pages';
+	import {
+		fetchFirebaseUserInfo,
+		getFirebaseUserId,
+		setFirebaseUserToState,
+	} from '$lib/firebase/auth';
 	import PageHeader from '$lib/components/content/PageHeader.svelte';
 	import SurfaceContainer from '$lib/components/containers/SurfaceContainer.svelte';
 	import SurfaceHeader from '$lib/components/content/SurfaceHeader.svelte';
 
 	onMount(() => {
 		const userId = getFirebaseUserId();
-		if (!userId) goto(authLoginPage);
+		if (!userId) return goto(authLoginPage);
+
+		fetchFirebaseUserInfo()
+			.then((firebaseUser) => {
+				// If user isn't stored yet, redirect to additional info fillout page
+				if (!firebaseUser) return goto(userPage);
+
+				// Otherwise, set user to state
+				setFirebaseUserToState(firebaseUser);
+			})
+			.catch(() => null);
 	});
 </script>
 
