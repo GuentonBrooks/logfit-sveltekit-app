@@ -103,7 +103,7 @@
 		</div>
 	</div>
 
-	<div class="flex items-center justify-center gap-5 my-5 mt-8">
+	<div class="flex items-center justify-center gap-8 my-5 mx-4 mt-8">
 		<SubmitButton on:click={store} />
 		<DeleteButton on:click={purge} />
 	</div>

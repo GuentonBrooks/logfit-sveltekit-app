@@ -104,7 +104,7 @@
 		</MaterialInput>
 	</div>
 
-	<div class="flex items-center justify-center my-5 mt-8">
+	<div class="flex items-center justify-center gap-8 my-5 mx-4 mt-8">
 		<SubmitButton on:click={store} />
 	</div>
 </SurfaceContainer>

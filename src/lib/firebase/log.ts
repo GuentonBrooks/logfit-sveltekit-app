@@ -1,5 +1,5 @@
 import { db } from './app';
-import { child, push, ref, update } from 'firebase/database';
+import { child, push, ref, remove, update } from 'firebase/database';
 
 import { alertTextState, alertTypeState } from '$lib/store';
 import type { FirebaseWorkoutLogFormat } from '$lib/types/log';
@@ -54,6 +54,32 @@ export const updateFirebaseWorkoutLogAsync = (key: string, log: FirebaseWorkoutL
 		.catch((error) => {
 			alertTypeState.set('error');
 			alertTextState.set('Logs/DB: ' + error.message);
+			throw error;
+		});
+};
+
+/** Deletes the selected log from firebase Reat-Time DB */
+export const removeFirebaseWorkoutLogAsync = (key: string, uid: string) => {
+	if (!key) {
+		alertTypeState.set('error');
+		alertTextState.set('Logs/DB: ' + 'Failed to delete the workout Log, missing log Key');
+		throw new Error('Failed to delete the workout Log, missing log Key');
+	}
+	if (!uid) {
+		alertTypeState.set('error');
+		alertTextState.set('Logs/DB: ' + 'Failed to delete the workout Log, missing User Id');
+		throw new Error('Failed to delete the workout Log, missing User Id');
+	}
+
+	return remove(ref(db, `logs/${key}`))
+		.then(() => remove(ref(db, `user-logs/${uid}/${key}`)))
+		.then(() => {
+			alertTypeState.set('info');
+			alertTextState.set('Auth/DB: ' + 'Workout Log Successfully Purged');
+		})
+		.catch((error) => {
+			alertTypeState.set('error');
+			alertTextState.set('Auth/DB: ' + error.message);
 			throw error;
 		});
 };

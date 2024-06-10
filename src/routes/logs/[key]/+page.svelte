@@ -20,8 +20,13 @@
 	import { onValue } from 'firebase/database';
 	import type { FirebaseWorkoutLogFormat } from '$lib/types/log';
 	import isValidFirebaseWorkoutLogFormat from '$lib/validation/isValidFirebaseWorkoutLogFormat';
-	import { getWorkoutLogRef, updateFirebaseWorkoutLogAsync } from '$lib/firebase/log';
+	import {
+		getWorkoutLogRef,
+		removeFirebaseWorkoutLogAsync,
+		updateFirebaseWorkoutLogAsync,
+	} from '$lib/firebase/log';
 	import { page } from '$app/stores';
+	import DeleteButton from '$lib/components/buttons/DeleteButton.svelte';
 
 	const key = $page.params.key;
 
@@ -57,6 +62,11 @@
 			.then(() => goto(homePage))
 			.catch(() => null);
 	};
+
+	const remove = () =>
+		removeFirebaseWorkoutLogAsync(key, uid)
+			.then(() => goto(homePage))
+			.catch(() => {});
 
 	onMount(() => {
 		if (!key) console.log('Invalid key');
@@ -110,7 +120,8 @@
 		</MaterialInput>
 	</div>
 
-	<div class="flex items-center justify-center my-5 mt-8">
+	<div class="flex items-center justify-center gap-8 my-5 mx-4 mt-8">
 		<SubmitButton on:click={store} />
+		<DeleteButton on:click={remove} />
 	</div>
 </SurfaceContainer>
