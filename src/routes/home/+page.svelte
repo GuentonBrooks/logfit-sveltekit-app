@@ -30,16 +30,8 @@
 	let unsubAllUserLogs: Unsubscriber;
 
 	const setGrandTotalTableSource = (): TableSource => ({
-		head: [
-			'User Id',
-			'First Name',
-			'Last Name',
-			'Log Entries',
-			'Total Workout Minutes',
-			'Total Workout Reps',
-		],
+		head: ['First Name', 'Last Name', 'Log Entries', 'Total Workout Minutes', 'Total Workout Reps'],
 		body: tableMapperValues(grandTotalTable, [
-			'uid',
 			'firstName',
 			'lastName',
 			'ttlEntries',
