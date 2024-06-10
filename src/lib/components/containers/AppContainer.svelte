@@ -21,7 +21,7 @@
 	</svelte:fragment>
 
 	<!-- Page Content -->
-	<div class="h-full p-5 pt-1">
+	<div class="h-full p-5 pt-1 mb-10">
 		<slot />
 	</div>
 

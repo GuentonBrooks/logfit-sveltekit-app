@@ -42,6 +42,9 @@
 		foot: [
 			'Total Users in Ranking',
 			`<span class="badge variant-soft-primary">${grandTotalTable.length}<span>`,
+			`<span class="badge variant-soft-primary">${groupTtlEntries}<span>`,
+			`<span class="badge variant-soft-primary">${groupTtlDuration}<span>`,
+			`<span class="badge variant-soft-primary">${groupTtlReps}<span>`,
 		],
 	});
 
