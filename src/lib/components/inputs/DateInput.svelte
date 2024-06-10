@@ -5,6 +5,8 @@
 	export let value: string;
 	export let ref: HTMLInputElement | null = null;
 
+	const maxdate = new Date().toISOString().split('T')[0];
+
 	const dispatch = createEventDispatcher();
 	const enter = () => dispatch('enter');
 </script>
@@ -15,6 +17,7 @@
 		class="input border-none rounded-none"
 		type="date"
 		name="date"
+		max={maxdate}
 		autocomplete="off"
 		placeholder="Date"
 		bind:value
