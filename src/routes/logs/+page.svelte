@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { authLoginPage, statsPage } from '$utils/pages';
+	import { authLoginPage, homePage, statsPage } from '$utils/pages';
 	import { getFirebaseUserId, getUserRef } from '$lib/firebase/auth';
 
 	import IconComment from '~icons/mdi/comment-processing';
@@ -52,7 +52,7 @@
 		if (!isValidFirebaseWorkoutLogFormat(logFormat)) return;
 
 		storeNewFirebaseWorkoutLogAsync(logFormat)
-			.then(() => goto(statsPage))
+			.then(() => goto(homePage))
 			.catch(() => null);
 	};
 

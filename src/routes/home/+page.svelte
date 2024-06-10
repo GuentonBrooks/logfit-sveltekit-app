@@ -110,6 +110,8 @@
 				list.push(row);
 			});
 
+			list.sort((a, b) => b.ttlReps - a.ttlReps);
+
 			grandTotalTable = list;
 		});
 	});
