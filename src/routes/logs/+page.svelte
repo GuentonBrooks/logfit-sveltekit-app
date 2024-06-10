@@ -22,6 +22,7 @@
 	import type { FirebaseWorkoutLogFormat } from '$lib/types/log';
 	import isValidFirebaseWorkoutLogFormat from '$lib/validation/isValidFirebaseWorkoutLogFormat';
 	import { storeNewFirebaseWorkoutLogAsync } from '$lib/firebase/log';
+	import { analyticsLogEntryEvent } from '$lib/firebase/analytics';
 
 	let date: string = '';
 	let duration: number;
@@ -53,7 +54,8 @@
 
 		storeNewFirebaseWorkoutLogAsync(logFormat)
 			.then(() => goto(homePage))
-			.catch(() => null);
+			.catch(() => null)
+			.finally(() => analyticsLogEntryEvent(uid));
 	};
 
 	onMount(() => {

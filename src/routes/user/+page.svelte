@@ -9,7 +9,7 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { authLoginPage, homePage, rootPage } from '$utils/pages';
-	import { analyticsUpdateUserEvent } from '$lib/firebase/analytics';
+	import { analyticsDeleteUserEvent, analyticsUpdateUserEvent } from '$lib/firebase/analytics';
 	import {
 		firebaseSignOut,
 		getFirebaseDisplayName,
@@ -69,7 +69,8 @@
 		removeFirebaseUserAsync(uid)
 			.then(() => firebaseSignOut())
 			.then(() => goto(rootPage))
-			.catch(() => null);
+			.catch(() => null)
+			.finally(() => analyticsDeleteUserEvent(getFirebaseUserId()));
 	};
 </script>
 

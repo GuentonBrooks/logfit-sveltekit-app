@@ -69,3 +69,36 @@ export const analyticsUpdateUserEvent = (uid: string) => {
 
 	analyticsState.update((events) => [...events, newEvent]);
 };
+
+export const analyticsDeleteUserEvent = (uid: string) => {
+	const newEvent: GoogleAnalyticsEvent = {
+		id: 'profile-delete',
+		data: { uid },
+		event: 'profile_update',
+		type: 'event',
+	};
+
+	analyticsState.update((events) => [...events, newEvent]);
+};
+
+export const analyticsLogEntryEvent = (uid: string) => {
+	const newEvent: GoogleAnalyticsEvent = {
+		id: 'log-entry',
+		data: { uid },
+		event: 'log_entry',
+		type: 'event',
+	};
+
+	analyticsState.update((events) => [...events, newEvent]);
+};
+
+export const analyticsLogEditEvent = (uid: string) => {
+	const newEvent: GoogleAnalyticsEvent = {
+		id: 'log-edit',
+		data: { uid },
+		event: 'log_entry',
+		type: 'event',
+	};
+
+	analyticsState.update((events) => [...events, newEvent]);
+};

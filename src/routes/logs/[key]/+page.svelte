@@ -27,6 +27,7 @@
 	} from '$lib/firebase/log';
 	import { page } from '$app/stores';
 	import DeleteButton from '$lib/components/buttons/DeleteButton.svelte';
+	import { analyticsLogEditEvent } from '$lib/firebase/analytics';
 
 	const key = $page.params.key;
 
@@ -60,13 +61,16 @@
 
 		updateFirebaseWorkoutLogAsync(key, logFormat)
 			.then(() => goto(homePage))
-			.catch(() => null);
+			.catch(() => null)
+			.finally(() => analyticsLogEditEvent(getFirebaseUserId()));
 	};
 
-	const remove = () =>
+	const remove = () => {
 		removeFirebaseWorkoutLogAsync(key, uid)
 			.then(() => goto(homePage))
-			.catch(() => {});
+			.catch(() => {})
+			.finally(() => analyticsLogEditEvent(getFirebaseUserId()));
+	};
 
 	onMount(() => {
 		if (!key) console.log('Invalid key');
