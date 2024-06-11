@@ -40,7 +40,7 @@
 		]),
 		meta: tableMapperValues(grandTotalTable, ['key']),
 		foot: [
-			'Total Users in Ranking',
+			'Totals',
 			`<span class="badge variant-soft-primary">${grandTotalTable.length}<span>`,
 			`<span class="badge variant-soft-primary">${groupTtlEntries}<span>`,
 			`<span class="badge variant-soft-primary">${groupTtlDuration}<span>`,
