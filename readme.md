@@ -6,9 +6,9 @@ Logfit Crossfit Application
 
 This Application was developed free of charge for [Crossfit Willemstad](crossfitwillemstad.com)
 
-## Demo Site
+## Live Site
 
-[Live Site](https://logfitwillemstad.netlify.app)
+[Logfit Crossfit App](https://logfitwillemstad.netlify.app)
 
 ### Tools
 
