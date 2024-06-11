@@ -66,5 +66,10 @@
 
 		<SurfaceHeader label="Powered By" />
 		<a href="mailto:guenton@gmail.com" class="mt-2"><LogoGuenton /></a>
+
+		<SurfaceHeader label="App Source Code" />
+		<a href="https://github.com/GuentonBrooks/logfit-sveltekit-app" target="_blank" class="anchor"
+			>View Source code on GitHub</a
+		>
 	</div>
 </SurfaceContainer>
