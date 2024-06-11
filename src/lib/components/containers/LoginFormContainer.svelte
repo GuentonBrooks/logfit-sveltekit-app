@@ -26,13 +26,13 @@
 	</div>
 
 	<div class="w-full flex justify-between items-center self-center mt-4 max-w-lg">
-		<LogoWstad />
+		<a href="http://www.crossfitwillemstad.com/" target="_blank"><LogoWstad /></a>
 		<LightSwitch
 			ring="border-none"
 			fillDark="fill-primary-500"
 			fillLight="fill-tertiary-500"
 			on:click={toggleDarkMode}
 		/>
-		<LogoGuenton />
+		<a href="mailto:guenton@gmail.com"><LogoGuenton /></a>
 	</div>
 </div>

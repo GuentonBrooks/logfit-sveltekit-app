@@ -2,14 +2,15 @@
 	import { AppBar, LightSwitch } from '@skeletonlabs/skeleton';
 	import IconLogout from '~icons/mdi/logout-variant';
 	import IconAccount from '~icons/mdi/account';
-
+	import IconInformation from '~icons/mdi/information-outline';
+	import LogoLogfit from '../images/LogoLogfit.svelte';
 	import MaterialFab from '../buttons/MaterialFab.svelte';
 	import Nav from './Nav.svelte';
+
 	import { firebaseSignOut } from '$lib/firebase/auth';
 	import { goto } from '$app/navigation';
-	import { rootPage, userPage } from '$utils/pages';
+	import { aboutPage, rootPage, userPage } from '$utils/pages';
 	import { isDarkModeState } from '$lib/store';
-	import LogoLogfit from '../images/LogoLogfit.svelte';
 
 	const logout = () => firebaseSignOut().then(() => goto(rootPage));
 	const toggleDarkMode = () => isDarkModeState.set(!$isDarkModeState);
@@ -17,7 +18,7 @@
 
 <AppBar shadow="shadow-2xl">
 	<svelte:fragment slot="lead">
-		<LogoLogfit />
+		<a href="/home"><LogoLogfit /> </a>
 	</svelte:fragment>
 
 	<div class="hidden md:flex mx-auto">
@@ -33,6 +34,9 @@
 		/>
 		<MaterialFab on:click={() => goto(userPage)}>
 			<IconAccount />
+		</MaterialFab>
+		<MaterialFab on:click={() => goto(aboutPage)}>
+			<IconInformation />
 		</MaterialFab>
 		<MaterialFab on:click={logout}>
 			<IconLogout />

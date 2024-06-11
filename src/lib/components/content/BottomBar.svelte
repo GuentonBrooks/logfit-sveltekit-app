@@ -13,6 +13,6 @@
 
 	<svelte:fragment slot="trail">
 		<p class="text-xs">Powered By</p>
-		<a href="https://www.guenton.com" target="_blank"><LogoGuenton /></a>
+		<a href="mailto:guenton@gmail.com"><LogoGuenton /></a>
 	</svelte:fragment>
 </AppBar>

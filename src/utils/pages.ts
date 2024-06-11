@@ -18,5 +18,8 @@ export const statsPage = '/stats';
 // USER
 export const userPage = '/user';
 
+// ABOUT
+export const aboutPage = '/about';
+
 // ERROR
 export const errorPage = '/error';

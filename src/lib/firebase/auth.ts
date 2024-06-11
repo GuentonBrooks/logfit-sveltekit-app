@@ -9,7 +9,7 @@ import {
 	signOut,
 } from 'firebase/auth';
 import { app, db } from './app';
-import { child, get, ref, remove, set } from 'firebase/database';
+import { child, get, push, ref, remove, set } from 'firebase/database';
 
 import { alertTextState, alertTypeState } from '$lib/store';
 import { emailState, firstNameState, lastNameState, userIdState } from '$lib/store/auth';
@@ -189,3 +189,16 @@ export const setFirebaseAdminState = (user: FirebaseDatabaseUserFormat) => {
 
 /** Get a Reference to the user db by the given uid */
 export const getUserRef = (uid: string) => child(ref(db), `users/${uid}`);
+
+/** Stores feedback in the firebase Reat-Time DB */
+export const storeFirebaseFeedbackAsync = (uid: string, feedback: string) =>
+	push(ref(db, `feedback/${uid}`), feedback)
+		.then(() => {
+			alertTypeState.set('success');
+			alertTextState.set('FEEDBACK/DB: ' + 'Feedback Successfully Uploaded, Thank you!');
+		})
+		.catch((error) => {
+			alertTypeState.set('error');
+			alertTextState.set('FEEDBACK/DB: ' + error.message);
+			throw error;
+		});

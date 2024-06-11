@@ -18,35 +18,31 @@
 	let unsubAllLogs: Unsubscriber;
 
 	const setMyTableSource = (): TableSource => ({
-		head: ['Log Id', 'First Name', 'Last Name', 'Date', 'Duration', 'Reps'],
+		head: ['First Name', 'Last Name', 'Date', 'Duration', 'Reps', 'Remarks'],
 		body: tableMapperValues(myLogTable, [
-			'key',
 			'firstName',
 			'lastName',
 			'date',
 			'duration',
 			'reps',
+			'remarks',
 		]),
 		meta: tableMapperValues(myLogTable, ['key']),
-		foot: ['', 'Total Logs', `<span class="badge variant-soft-primary">${myLogTable.length}<span>`],
+		foot: ['Total Logs', `<span class="badge variant-soft-primary">${myLogTable.length}<span>`],
 	});
 
 	const setAllTableSource = (): TableSource => ({
-		head: ['Log Id', 'First Name', 'Last Name', 'Date', 'Duration', 'Reps'],
+		head: ['First Name', 'Last Name', 'Date', 'Duration', 'Reps', 'Remarks'],
 		body: tableMapperValues(allLogTable, [
-			'key',
 			'firstName',
 			'lastName',
 			'date',
 			'duration',
 			'reps',
+			'remarks',
 		]),
 		meta: tableMapperValues(allLogTable, ['key']),
-		foot: [
-			'',
-			'Total Logs',
-			`<span class="badge variant-soft-primary">${allLogTable.length}<span>`,
-		],
+		foot: ['Total Logs', `<span class="badge variant-soft-primary">${allLogTable.length}<span>`],
 	});
 
 	$: myTableData = myLogTable && setMyTableSource();
